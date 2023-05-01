@@ -5,6 +5,6 @@ import { Injectable } from '@angular/core';
 })
 export class ServiceService {
 
-  public static apiUrl: string = "http://localhost:8080/";
+  public static apiUrl: string = "http://localhost:8080";
   constructor() { }
 }

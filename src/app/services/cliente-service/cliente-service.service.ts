@@ -13,6 +13,6 @@ export class ClienteServiceService {
   constructor(private http: HttpClient) { }
 
   listar() {
-    this.http.get(this.endpoint + "cliente").subscribe(resultado => console.log(resultado));
+    this.http.get(this.endpoint + "/cliente").subscribe(resultado => console.log(resultado));
   }
 }
