@@ -1,1 +1,13 @@
-<p>Funciona!!!</p>
+<table class="table table-bordered">
+  <tr>
+    <th>Nome</th>
+    <th>Data de nascimento</th>
+  </tr>
+
+  <tr *ngFor="let cliente of clientes">
+    <td>{{cliente.nome}}</td>
+    <td>{{cliente.dataNascimento}}</td>
+    <td><button (click)="remove(cliente.id)">Remover</button></td>
+    <td><button [routerLink]="['/editar', cliente.id]">Editar</button></td>
+  </tr>
+</table>

@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { ClienteListComponent } from './cliente/cliente-list/cliente-list.component';
 import { RouterModule } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { ClienteEditarComponent } from './cliente/cliente-editar/cliente-editar.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [

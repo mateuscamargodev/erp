@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { ClienteServiceService } from 'src/app/services/cliente-service/cliente-service.service';
+import { Cliente } from 'src/app/interfaces/cliente';
 
 @Component({
   selector: 'app-cliente-list',
@@ -8,10 +10,17 @@ import { ClienteServiceService } from 'src/app/services/cliente-service/cliente-
 })
 export class ClienteListComponent implements OnInit {
 
-  constructor(private clienteService: ClienteServiceService) { }
+  public clientes: Cliente[];
 
-  ngOnInit(): void {
-    this.clienteService.listar();
+  constructor(private clienteService: ClienteServiceService){
+    this.clientes = [];
   }
 
+  ngOnInit(): void {
+    this.clienteService.listar().subscribe(dados => this.clientes = dados);
+  }
+
+  remove(id: number){
+    this.clienteService.remover(id).subscribe(dados => console.log(dados));
+  }
 }
