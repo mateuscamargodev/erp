@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { NgForm } from '@angular/forms';
+import { FormControl, NgForm } from '@angular/forms';
+import { ClienteService } from 'src/app/services/cliente.service';
+
 @Component({
   selector: 'app-cliente-editar',
   templateUrl: './cliente-editar.component.html',
@@ -8,17 +10,25 @@ import { NgForm } from '@angular/forms';
 })
 export class ClienteEditarComponent implements OnInit {
 
-  public id: number;
+  public idControl = new FormControl('');
+  public nomeControl = new FormControl('');
+  public dataNascimentoControl = new FormControl('');
 
-  constructor(private route: ActivatedRoute) {
-    this.id = 0;
-  }
+  constructor(private route: ActivatedRoute, private service: ClienteService) {}
 
   ngOnInit(): void {
-    this.id = this.route.snapshot.params['id'];
+    let id:string = this.route.snapshot.params['id'];
+    if(id != null && id.length > 0) {
+      this.service.selecionar(id).subscribe(data => {
+        this.idControl = new FormControl(data.id);
+        this.nomeControl = new FormControl(data.nome);
+        this.dataNascimentoControl = new FormControl(data.dataNascimento);
+      });
+    }
+    
   }
 
-  editar(form: NgForm){
-    let nome = form.value;
+  editar(){
+    console.log('Teste', this.nomeControl);
   }
 }
