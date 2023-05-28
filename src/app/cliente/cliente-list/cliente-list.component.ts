@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { ClienteServiceService } from 'src/app/services/cliente-service/cliente-service.service';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Router } from '@angular/router';
 import { Cliente } from 'src/app/interfaces/cliente';
+import { ClienteService } from 'src/app/services/cliente.service';
 
 @Component({
   selector: 'app-cliente-list',
@@ -12,15 +12,22 @@ export class ClienteListComponent implements OnInit {
 
   public clientes: Cliente[];
 
-  constructor(private clienteService: ClienteServiceService){
+  constructor(private route: Router, private clienteService: ClienteService){
     this.clientes = [];
   }
 
   ngOnInit(): void {
-    this.clienteService.listar().subscribe(dados => this.clientes = dados);
+    this.loadClientes();
   }
 
   remove(id: number){
-    this.clienteService.remover(id).subscribe(dados => console.log(dados));
+    let toRemove = confirm("Deseja remover este cliente?");
+    if(toRemove) {
+      this.clienteService.remover(id).subscribe(dados => this.loadClientes());      
+    }
+  }
+
+  loadClientes() {
+    this.clienteService.listar().subscribe(dados => this.clientes = dados);
   }
 }

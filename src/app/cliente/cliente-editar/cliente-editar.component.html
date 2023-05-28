@@ -1,13 +1,22 @@
-<div class="container">
-  <form #f="ngForm">
-    <label for="nome">Nome:</label>
-    <input type="text" id="nome" name="nome" ngModel>
+<div class="col-sm-12">
 
-    <label for="dataNascimento">Data de nascimento:</label>
-    <input type="text" id="dataNascimento" name="dataNascimento" ngModel>
+  <h1>Editar Cliente</h1>
+  
+  <a routerLink="/clientes" class="btn btn-default">Voltar</a>
 
-    <input type="hidden" id="id">
+  <form #f="ngForm" (ngSubmit)="editar()" novalidate>
+    <div class="form-group">
+      <label for="nome">Nome:</label>
+      <input type="text" class="form-control" [formControl]="nomeControl">
+    </div>
 
-    <button (ngSubmit)="editar(f)">Editar</button>
+    <div class="form-group">
+      <label for="dataNascimento">Data de nascimento:</label>
+      <input type="text" class="form-control" [formControl]="dataNascimentoControl">
+    </div>
+
+    <input type="hidden" [formControl]="idControl">
+
+    <button class="btn btn-primary">Salvar</button>
   </form>
 </div>

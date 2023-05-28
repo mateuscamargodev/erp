@@ -1,24 +1,26 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ClienteListComponent } from './cliente/cliente-list/cliente-list.component';
-import { RouterModule } from '@angular/router';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { ClienteEditarComponent } from './cliente/cliente-editar/cliente-editar.component';
-import { FormsModule } from '@angular/forms';
+import { ClienteModule } from './cliente/cliente.module';
+import { HomeComponent } from './home/home.component';
+import { ErrorPageComponent } from './error-page/error-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ClienteListComponent
+    HomeComponent,
+    ErrorPageComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     RouterModule,
-    HttpClientModule
+    HttpClientModule,
+    ClienteModule
   ],
   providers: [],
   bootstrap: [AppComponent]
